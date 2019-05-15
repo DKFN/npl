@@ -3,7 +3,6 @@
 # https://github.com/DKFN/npl
 
 localRegistry="http://localhost:4873/"
-previousReg=$(npm config get registry)
 
 publish() {
     if [ ! "$(docker ps -a | grep verdaccio-npl)" ];
