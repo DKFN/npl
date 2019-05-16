@@ -13,8 +13,8 @@ publish() {
         sleep 2;
         npm adduser --registry  "$localRegistry"
     fi
-    previousReg=$(npm config get registry)
 
+    previousReg=$(npm config get registry)
     if [ ! "$previousReg" = "$localRegistry" ];
     then
         echo "Saving previous registry as : $previousReg"
@@ -23,8 +23,11 @@ publish() {
 
     npm set registry ${localRegistry}
     wd=$(pwd)
+    newVersion=$( cd "$wd"; npm version prerelease --preid=local )
     npm publish "$wd"
-    echo "Go ahead and npm install your project with your local published dependency/version. All orther dependencies will be fetched on npm official registry"
+    echo "Go ahead and npm install your project with your local published dependency/version. All other dependencies will be fetched on npm official registry"
+    echo "Verdaccio UI is accessible here : ${localRegistry}"
+    echo "You package version : $newVersion"
 }
 
 clean() {
