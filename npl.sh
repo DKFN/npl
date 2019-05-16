@@ -23,7 +23,7 @@ publish() {
 
     npm set registry ${localRegistry}
     wd=$(pwd)
-    newVersion=$( cd "$wd"; npm version prerelease --preid=local )
+    newVersion=$( cd "$wd"; npm version prerelease --preid=local --git-tag-version=false)
     npm publish "$wd"
     echo "Go ahead and npm install your project with your local published dependency/version. All other dependencies will be fetched on npm official registry"
     echo "Verdaccio UI is accessible here : ${localRegistry}"
